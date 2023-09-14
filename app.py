@@ -38,7 +38,7 @@ if uploaded_file is not None:
 
      # batch['BirthDate'] = pd.to_datetime(df['BirthDate'], format='%Y-%m-%d').dt.strftime('%Y%m%d')
 
-     for i in df['BirthDate'].iteritems():
+     for i in df['BirthDate'].items():
                batch['BirthDate'] = pd.to_datetime(df['BirthDate'], format='%Y-%m-%d').dt.strftime('%Y%m%d')
 
      batch_all = pd.DataFrame()
