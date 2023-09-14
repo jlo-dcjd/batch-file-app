@@ -25,8 +25,9 @@ if uploaded_file is not None:
 
      batch = pd.DataFrame()
 
-     df.LastName = df.LastName.replace(' ', '-', regex=True)  # last name: replace spaces with dashes
+     df.LastName = df.LastName.replace(' ', '', regex=True)  # last name: remove spaces
      df.LastName = df.LastName.replace('\'', '', regex=True)  # last name: remove apostrophe
+     df.LastName = df.LastName.replace('-', '', regex=True)  # last name: remove dashes
 
      df.FirstName = df.FirstName.replace('\'', '', regex=True)  # first name: remove apostrophe
      df.FirstName = df.FirstName.replace(' ', '', regex=True)  # first name: remove spaces
