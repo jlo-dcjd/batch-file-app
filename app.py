@@ -33,10 +33,7 @@ if uploaded_file is not None:
                               df['LastName'] + ',' + df['FirstName'] + ' ' + (df['MiddleName'].str[0]))
 
      batch['Gender'] = np.where(df['Gender'] == 'Male', 'M', 'F')
-     batch['Race'] = np.where(df['Race'] == 'White', 'W',
-                              np.where(df['Race'] == 'Hispanic', 'W', np.where(df['Race'] == 'Black', 'B', 'U')))
-
-     # batch['BirthDate'] = pd.to_datetime(df['BirthDate'], format='%Y-%m-%d').dt.strftime('%Y%m%d')
+     batch['Race'] = np.where(df['Race'] == 'White', 'W', np.where(df['Race'] == 'Hispanic', 'W', np.where(df['Race'] == 'Black', 'B', 'U')))
 
      for i in df['BirthDate'].items():
                batch['BirthDate'] = pd.to_datetime(df['BirthDate'], format='%Y-%m-%d').dt.strftime('%Y%m%d')
@@ -49,7 +46,6 @@ if uploaded_file is not None:
 
      csv = convert_df(batch_all)
 
-     # csv.to_csv('batch_file.txt')'
      batch_all.to_csv('batch_file.txt', index=False, header=None)
 
      with open('batch_file.txt','r') as f, open('output.txt','w') as fo:
