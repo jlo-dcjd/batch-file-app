@@ -55,7 +55,7 @@ if uploaded_file is not None:
              fo.write(line.replace('"', '').replace("'", ""))
 
      st.markdown('#')     
-     st.write('Batch file is ready to download')
+     st.markdown('#### Batch file is ready to download')
      st.download_button(
          label="Download Batch File",
          data=open('output.txt', 'rb'),
