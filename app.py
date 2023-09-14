@@ -3,20 +3,19 @@ import pandas as pd
 import numpy as np
 import csv
 
-st.header('Create Batch File')
+st.header('Create DPS Batch File')
 
 st.markdown('#### Instructions:')
 st.markdown('''
-1. Upload an Excel file. 
-
-
-2. Make sure it has the following columns:
+1. Upload an Excel file. Make sure it has the following columns in the same order:
 
           
 | PID | FirstName | MiddleName | LastName | BirthDate | Gender | Race |
 |-----|-----------|------------|----------|-----------|--------|------|
 ''')
 
+st.markdown('#')
+st.markdown('#')
 st.markdown('#')
 st.markdown('#')
 
@@ -56,9 +55,7 @@ if uploaded_file is not None:
          for line in f:
              fo.write(line.replace('"', '').replace("'", ""))
 
-     f.close()
-     fo.close()
-
+     st.write('Batch file is ready to download')
      st.download_button(
          label="Download Batch File",
          data=open('output.txt', 'rb'),
