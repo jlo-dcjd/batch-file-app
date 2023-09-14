@@ -5,7 +5,7 @@ import csv
 
 st.header('Create Batch File')
 
-st.markdown('### Instructions:')
+st.markdown('#### Instructions:')
 st.markdown('''
 1. Upload an Excel file. 
 
@@ -17,6 +17,7 @@ st.markdown('''
 |-----|-----------|------------|----------|-----------|--------|------|
 ''')
 
+st.markdown('#')
 st.markdown('#')
 
 uploaded_file = st.file_uploader("Upload your Excel file")
