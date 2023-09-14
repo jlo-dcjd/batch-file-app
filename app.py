@@ -60,7 +60,7 @@ if uploaded_file is not None:
      st.download_button(
          label="Download Batch File",
          data=open('output.txt', 'rb'),
-         file_name='Batch File.txt',
+         file_name='batch_file.txt',
          mime='text/csv',
      )
 
