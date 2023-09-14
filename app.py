@@ -4,17 +4,17 @@ import numpy as np
 import csv
 
 st.header('Create Batch File')
-#
+
+st.markdown('### Instructions:')
 st.markdown('''
+          1. Upload an excel file. 
 
-          Instructions: 
+          2. Make sure it has the following columns:
           
-          Upload an excel file. 
-
-          Make sure it has the following columns:
-          
-          
-          [PID, FirstName, MiddleName, LastName, BirthDate, Gender, Race]''')
+| PID | FirstName | MiddleName | LastName | BirthDate | Gender | Race |
+|-----|-----------|------------|----------|-----------|--------|------|
+|     |           |            |          |           |        |      |
+''')
 
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
