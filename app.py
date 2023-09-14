@@ -7,7 +7,7 @@ st.header('Create Batch File')
 
 st.markdown('### Instructions:')
 st.markdown('''
-1. Upload an excel file. 
+1. Upload an Excel file. 
 
 
 2. Make sure it has the following columns:
@@ -17,7 +17,9 @@ st.markdown('''
 |-----|-----------|------------|----------|-----------|--------|------|
 ''')
 
-uploaded_file = st.file_uploader("Choose a file")
+st.markdown('#')
+
+uploaded_file = st.file_uploader("Upload your Excel file")
 if uploaded_file is not None:
      df = pd.read_excel(uploaded_file)
 
