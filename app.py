@@ -7,9 +7,11 @@ st.header('Create Batch File')
 
 st.markdown('### Instructions:')
 st.markdown('''
-          1. Upload an excel file. 
+1. Upload an excel file. 
 
-          2. Make sure it has the following columns:
+
+2. Make sure it has the following columns:
+
           
 | PID | FirstName | MiddleName | LastName | BirthDate | Gender | Race |
 |-----|-----------|------------|----------|-----------|--------|------|
