@@ -17,7 +17,6 @@ st.markdown('''
 st.markdown('#')
 st.markdown('#')
 st.markdown('#')
-st.markdown('#')
 
 uploaded_file = st.file_uploader("Upload your Excel file")
 if uploaded_file is not None:
@@ -55,6 +54,7 @@ if uploaded_file is not None:
          for line in f:
              fo.write(line.replace('"', '').replace("'", ""))
 
+     st.markdown('#')     
      st.write('Batch file is ready to download')
      st.download_button(
          label="Download Batch File",
