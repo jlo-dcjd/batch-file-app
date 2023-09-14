@@ -15,7 +15,6 @@ st.markdown('''
           
 | PID | FirstName | MiddleName | LastName | BirthDate | Gender | Race |
 |-----|-----------|------------|----------|-----------|--------|------|
-|     |           |            |          |           |        |      |
 ''')
 
 uploaded_file = st.file_uploader("Choose a file")
