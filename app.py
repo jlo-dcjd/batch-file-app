@@ -19,7 +19,6 @@ st.markdown('''
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
      df = pd.read_excel(uploaded_file)
-     st.write(df)
 
      batch = pd.DataFrame()
 
@@ -37,14 +36,13 @@ if uploaded_file is not None:
      batch['Race'] = np.where(df['Race'] == 'White', 'W',
                               np.where(df['Race'] == 'Hispanic', 'W', np.where(df['Race'] == 'Black', 'B', 'U')))
 
-     batch['BirthDate'] = pd.to_datetime(df['BirthDate'], format='%Y-%m-%d').dt.strftime('%Y%m%d')
+     # batch['BirthDate'] = pd.to_datetime(df['BirthDate'], format='%Y-%m-%d').dt.strftime('%Y%m%d')
 
      for i in df['BirthDate'].iteritems():
-         batch['BirthDate'] = pd.to_datetime(df['BirthDate'], format='%Y-%m-%d').dt.strftime('%Y%m%d')
+               batch['BirthDate'] = pd.to_datetime(df['BirthDate'], format='%Y-%m-%d').dt.strftime('%Y%m%d')
 
      batch_all = pd.DataFrame()
-     batch_all['1'] = batch["Name"].str.pad(30, side='right', fillchar=' ') + batch['Gender'] + batch['Race'] + batch[
-         'BirthDate']
+     batch_all['1'] = batch["Name"].str.pad(30, side='right', fillchar=' ') + batch['Gender'] + batch['Race'] + batch['BirthDate']
 
      def convert_df(df):
          return df.to_csv(sep=' ', index=False, header=None).encode('utf-8')
