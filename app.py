@@ -25,13 +25,13 @@ if uploaded_file is not None:
 
      batch = pd.DataFrame()
 
-     df.LastName = df.LastName.replace(' ', '', regex=True)  # last name: remove spaces
-     df.LastName = df.LastName.replace('\'', '', regex=True)  # last name: remove apostrophe
-     df.LastName = df.LastName.replace('-', '', regex=True)  # last name: remove dashes
+     df.iloc[:, 3] = df.iloc[:, 3].replace(' ', '')  # last name: remove spaces
+     df.iloc[:, 3] = df.iloc[:, 3].replace('\'', '')  # last name: remove apostrophe
+     df.iloc[:, 3] = df.iloc[:, 3].replace('\'', '')  # last name: remove apostrophe
 
-     df.FirstName = df.FirstName.replace('\'', '', regex=True)  # first name: remove apostrophe
-     df.FirstName = df.FirstName.replace(' ', '', regex=True)  # first name: remove spaces
-     df.FirstName = df.FirstName.replace('-', '', regex=True)  # first name: remove dashes
+     df.iloc[:, 1] = df.iloc[:, 1].replace('\'', '')  # first name: remove apostrophe
+     df.iloc[:, 1] = df.iloc[:, 1].replace(' ', '')  # first name: remove spaces
+     df.iloc[:, 1] = df.iloc[:, 1].replace('-', '')  # first name: remove dashes
 
      batch['Name'] = np.where(df['MiddleName'].isnull(), df['LastName'] + ',' + df['FirstName'],
                               df['LastName'] + ',' + df['FirstName'] + ' ' + (df['MiddleName'].str[0]))
@@ -40,7 +40,7 @@ if uploaded_file is not None:
      batch['Race'] = np.where(df['Race'] == 'White', 'W', np.where(df['Race'] == 'Hispanic', 'W', np.where(df['Race'] == 'Black', 'B', 'U')))
 
      for i in df.iloc[:, 4].items():
-               batch['BirthDate'] = pd.to_datetime(df['BirthDate'], format='%Y-%m-%d').dt.strftime('%Y%m%d')
+               batch['BirthDate'] = pd.to_datetime(df.iloc[:, 4], format='%Y-%m-%d').dt.strftime('%Y%m%d')
 
      batch_all = pd.DataFrame()
      batch_all['1'] = batch["Name"].str.pad(30, side='right', fillchar=' ') + batch['Gender'] + batch['Race'] + batch['BirthDate']
