@@ -39,7 +39,7 @@ if uploaded_file is not None:
      batch['Gender'] = np.where(df['Gender'] == 'Male', 'M', 'F')
      batch['Race'] = np.where(df['Race'] == 'White', 'W', np.where(df['Race'] == 'Hispanic', 'W', np.where(df['Race'] == 'Black', 'B', 'U')))
 
-     for i in df['BirthDate'].items():
+     for i in df.iloc[:, 4].items():
                batch['BirthDate'] = pd.to_datetime(df['BirthDate'], format='%Y-%m-%d').dt.strftime('%Y%m%d')
 
      batch_all = pd.DataFrame()
