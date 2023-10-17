@@ -55,6 +55,9 @@ if uploaded_file is not None:
     batch = pd.DataFrame()
     batch['records'] = df["b_name"].str.pad(30, side='right', fillchar=' ') + df['b_gender'] + df['b_race'] + df['b_bday']
 
+    # view df
+    st.dataframe(df)
+
     batch.to_csv('output.txt', index=False, header=None)
 
     with open('output.txt', 'r') as f, open('batch_file.txt', 'w') as fo:
