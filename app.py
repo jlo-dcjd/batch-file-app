@@ -42,29 +42,20 @@ if uploaded_file is not None:
     df.iloc[:, 1] = df.iloc[:, 1].str.replace('-', '')  # first name: remove dashes
     df.iloc[:, 1] = df.iloc[:, 1].str.replace('.', '')  # first name: remove periods
 
+    # make batch file columns
+    df['b_name'] = np.where(df.iloc[:, 2].isnull(), df.iloc[:, 3] + ',' + df.iloc[:, 1],
+                            df.iloc[:, 3] + ',' + df.iloc[:, 1] + ' ' + (df.iloc[:, 2].str[0]))
+
+    df['b_gender'] = np.where(df.iloc[:, 5] == 'Male', 'M', 'F')
+    df['b_race'] = np.where(df.iloc[:, 6] == 'White', 'W',
+                            np.where(df.iloc[:, 6] == 'Hispanic', 'W', np.where(df.iloc[:, 6] == 'Black', 'B', 'U')))
+
+    df['b_bday'] = pd.to_datetime(df.iloc[:, 4], format='%Y-%m-%d').dt.strftime('%Y%m%d')
+
     batch = pd.DataFrame()
+    batch['records'] = df["b_name"].str.pad(30, side='right', fillchar=' ') + df['b_gender'] + df['b_race'] + df['b_bday']
 
-    batch['Name'] = np.where(df['MiddleName'].isnull(), df['LastName'] + ',' + df['FirstName'],
-                             df['LastName'] + ',' + df['FirstName'] + ' ' + (df['MiddleName'].str[0]))
-
-    batch['Gender'] = np.where(df['Gender'] == 'Male', 'M', 'F')
-    batch['Race'] = np.where(df['Race'] == 'White', 'W',
-                             np.where(df['Race'] == 'Hispanic', 'W', np.where(df['Race'] == 'Black', 'B', 'U')))
-
-    batch['BirthDate'] = pd.to_datetime(df.iloc[:, 4], format='%Y-%m-%d').dt.strftime('%Y%m%d')
-
-    batch_all = pd.DataFrame()
-    batch_all['1'] = batch["Name"].str.pad(30, side='right', fillchar=' ') + batch['Gender'] + batch['Race'] + batch[
-        'BirthDate']
-
-
-    def convert_df(df):
-        return df.to_csv(sep=' ', index=False, header=None).encode('utf-8')
-
-
-    csv = convert_df(batch_all)
-
-    batch_all.to_csv('output.txt', index=False, header=None)
+    batch.to_csv('output.txt', index=False, header=None)
 
     with open('output.txt', 'r') as f, open('batch_file.txt', 'w') as fo:
         for line in f:
